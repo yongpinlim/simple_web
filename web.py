@@ -4,6 +4,7 @@ import functions
 
 todos = functions.read_file()
 
+st.set_page_config(layout="wide")
 
 def add_todo():
     new_todo = st.session_state["new_todo"] + "\n"
@@ -13,8 +14,10 @@ def add_todo():
 
 st.title("My To-do App")
 st.subheader("My first simple web application")
-st.write("Just for testing")
+st.write("Just for <b>testing</b>.", unsafe_allow_html=True)
 
+st.text_input(label="", placeholder="Please add more to do list",
+              on_change=add_todo, key="new_todo")
 
 for index, todo in enumerate(todos):
     checkbox = st.checkbox(todo, key=todo)
@@ -26,7 +29,6 @@ for index, todo in enumerate(todos):
 
 
 
-st.text_input(label="", placeholder="Please add more to do list",
-              on_change=add_todo, key="new_todo")
+
 
 st.write(st.session_state)
